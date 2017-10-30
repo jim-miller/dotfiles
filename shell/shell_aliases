@@ -3,6 +3,19 @@
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+alias grep="ggrep"
+alias free="top -l 1 | head -n 10 | grep PhysMem"
+alias grepsrc="grep -Rn -C 3 \
+  --include={\*.java,\*.scala,\*.py,\*.sbt,\*.gradle,\*.js} \
+  --exclude-dir={test,.git,.svn,CVS,node_modules,static,venv}"
+alias sshb="ssh -i ~/.ssh/Legacy_pre-prod_PEM_v2 ec2-user@10.194.233.162"
+# alias git=hub # using this alias causes oh-my-zsh git plugin to break
+alias ij='open -a /Applications/IntelliJ\ IDEA\ CE.app/Contents/MacOS/idea'
+alias st='open -a SourceTree'
+alias cleangitbranches='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d; git remote prune origin'
+alias vi="/usr/local/bin/vim"
+alias dog="pygmentize -g"
+
 # Enable aliases to be sudo’ed
 alias sudo="sudo "
 

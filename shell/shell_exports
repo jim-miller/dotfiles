@@ -60,3 +60,9 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # github.com/trapd00r/LS_COLORS
 # command -v gdircolors >/dev/null 2>&1 || alias gdircolors="dircolors"
 # eval "$(gdircolors -b ~/.dircolors)"
+
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
+export AMMONITE_MODULES=$HOME/ammonite-modules/
+
+export GROOVY_HOME=/usr/local/opt/groovy/libexec

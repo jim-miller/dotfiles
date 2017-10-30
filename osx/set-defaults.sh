@@ -8,7 +8,7 @@
 #
 
 # Set computer name
-COMPUTERNAME="Nick Plekhanov's MBP"
+COMPUTERNAME="Jim Miller's MBP"
 HOSTNAME='mbp'
 LOCALHOSTNAME='mbp'
 
