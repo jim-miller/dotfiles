@@ -30,3 +30,4 @@ venv/*
 project/.boot/*
 project/.ivy/*
 
+.gradletasknamecache
