@@ -31,3 +31,8 @@ project/.boot/*
 project/.ivy/*
 
 .gradletasknamecache
+.DS_Store
+venv/*
+project/.boot/*
+project/.ivy/*
+Pods
