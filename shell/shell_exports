@@ -70,3 +70,9 @@ export GROOVY_HOME=/usr/local/opt/groovy/libexec
 export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 export ANDROID_NDK_HOME=/usr/local/share/android-ndk
 
+# For a ipython notebook and pyspark integration
+if which pyspark > /dev/null; then
+  export SPARK_HOME="/usr/local/Cellar/apache-spark/2.2.0/libexec/"
+  export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$PYTHONPATH
+  export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$PYTHONPATH
+fi
