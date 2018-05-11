@@ -213,3 +213,6 @@ alias update_brew_npm_gem='brew_update; npm install npm -g; npm update -g; sudo 
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="lwp-request -m '$method'"
 done
+
+# Docker Jupyter image with Scala and Spark
+alias jupyterspark="docker run -it -v ~/notebooks:/notebooks -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 8888:8888 -h sandbox aghorbani/spark-jupyter-scala"
