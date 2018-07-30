@@ -36,3 +36,5 @@ venv/*
 project/.boot/*
 project/.ivy/*
 Pods
+
+*.*.sw?
