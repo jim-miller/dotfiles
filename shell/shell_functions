@@ -158,3 +158,21 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCodeInsiders" --args $*;
 shellswitch () {
   chsh -s $(brew --prefix)/bin/$1
 }
+emrlogin () { # function use to login EMR master node
+  ssh -o StrictHostKeyChecking=no -t $(echo $1 | tr '[:upper:]' '[:lower:]') sudo ssh -i /home/.1/.goofy -o StrictHostKeyChecking=no hadoop@$2;
+}
+emrdstoolslogin() { # function use to login EMR master node where ds apps are running
+  ssh -o StrictHostKeyChecking=no -t $(echo $1 | tr '[:upper:]' '[:lower:]') ssh -o StrictHostKeyChecking=no -t ${USER}@$2;
+}
+airflowlogin() { # function use to login AirFlow
+  ssh -o StrictHostKeyChecking=no -t $(echo $1 | tr '[:upper:]' '[:lower:]') sudo ssh -i /home/.1/.goofyaf -o StrictHostKeyChecking=no ubuntu@$2;
+}
+anacondaRlogin() { # function use to login AirFlow AnacondaR
+  ssh -o StrictHostKeyChecking=no -t $(echo $1 | tr '[:upper:]' '[:lower:]') sudo ssh -i /home/.1/.goofyaf -o StrictHostKeyChecking=no ec2-user@$2;
+}
+ngap2ssh() { # main function for ssh remotely
+  arg1=$1; arg2=$2; arg3=$3; if [[ "$arg1" == "emr" ]]; then emrlogin $arg2 $arg3; elif [[ "$arg1" == "dstools" ]]; then emrdstoolslogin $arg2 $arg3; elif [[ "$arg1" == "airflow" ]]; then airflowlogin $arg2 $arg3;elif [[ "$arg1" == "anacondaR" ]]; then anacondaRlogin $arg2 $arg3; else echo; fi
+}
+ec2tags() {
+  aws --region us-west-2 --profile $1 ec2 describe-instances --instance-ids $2 | jq '.Reservations[].Instances[].Tags[]'
+}

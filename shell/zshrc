@@ -66,15 +66,9 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws git brew brew-cask scala sbt python pip common-aliases docker virtualenv zsh-autosuggestions rbenv gradle)
+plugins=(aws git brew brew-cask scala sbt python pip docker virtualenv zsh-autosuggestions docker)
 
 # User configuration
-
-# Load the shell dotfiles
-for file in $HOME/.{shell_exports,shell_aliases,shell_functions,shell_config}; do
-  [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
@@ -100,3 +94,9 @@ source $ZSH/oh-my-zsh.sh
 # Source local extra (private) settings specific to machine if it exists
 [ -f ~/.zsh.local ] && source ~/.zsh.local
 unsetopt AUTO_CD
+
+# Load the shell dotfiles
+for file in $HOME/.{shell_exports,shell_aliases,shell_functions,shell_config}; do
+  [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;

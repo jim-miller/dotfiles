@@ -80,16 +80,22 @@ fi
 export CLICOLOR_FORCE=1
 
 # List all files colorized in long format
-alias l="ls -lF ${colorflag}"
+# alias l="ls -lF ${colorflag}"
+
+# List all files using colorls https://github.com/athityakumar/colorls
+alias ll="colorls -l --sd"
 
 # ls options: A = include hidden (but not . or ..), F = put `/` after folders, h = byte unit suffixes
-alias ls='ls -AFh ${colorflag} --group-directories-first'
+# alias ls='ls -AFh ${colorflag} --group-directories-first'
+alias ls='colorls -A --sd'
 
 # List all files colorized in long format, including dot files
-alias la="ls -la ${colorflag}"
+# alias la="ls -la ${colorflag}"
+alias la="colorls -la"
 
 # List only directories
-alias lsd='gls -l | grep "^d"'
+# alias lsd='gls -l | grep "^d"'
+alias lsd='colorls -ld'
 
 # `cat` with beautiful colors. requires Pygments installed.
 # sudo easy_install -U Pygments
@@ -156,7 +162,7 @@ alias gchp='git cherry-pick' # cherry pick the committed code in your own branch
 alias gcln='git clean -xfd' # remove untracked files
 
 # Undo a `git push`
-alias undopush="git push -f origin HEAD^:master"
+alias undopush="git push -f origin HEAD\^:master"
 
 # `cd` to Git repo root
 alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
@@ -216,3 +222,6 @@ done
 
 # Docker Jupyter image with Scala and Spark
 alias jupyterspark="docker run -it -v $HOME/notebooks:/notebooks -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 8888:8888 -h sandbox aghorbani/spark-jupyter-scala"
+
+# NGAP2 tools depend on this alias
+alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
