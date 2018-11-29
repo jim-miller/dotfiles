@@ -176,3 +176,6 @@ ngap2ssh() { # main function for ssh remotely
 ec2tags() {
   aws --region us-west-2 --profile $1 ec2 describe-instances --instance-ids $2 | jq '.Reservations[].Instances[].Tags[]'
 }
+decodejwt () {
+  tr '.' ' ' | awk '{print $2}' | base64 -d
+}
