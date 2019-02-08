@@ -263,3 +263,5 @@
 [user]
 	email = jim.miller2@nike.com
 	name = Jim Miller
+[branch "master"]
+	mergeoptions = --ff-only
