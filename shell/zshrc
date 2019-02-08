@@ -66,7 +66,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws git brew brew-cask scala sbt python pip docker virtualenv zsh-autosuggestions docker)
+plugins=(aws git brew brew-cask scala sbt python pip docker virtualenv zsh-autosuggestions docker nvm)
 
 # User configuration
 
@@ -100,3 +100,18 @@ for file in $HOME/.{shell_exports,shell_aliases,shell_functions,shell_config}; d
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/jmil46/Projects/CDS/crs-hydration-station/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/jmil46/Projects/CDS/crs-hydration-station/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/jmil46/Projects/CDS/crs-hydration-station/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/jmil46/Projects/CDS/crs-hydration-station/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh

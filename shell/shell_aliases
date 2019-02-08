@@ -225,3 +225,5 @@ alias jupyterspark="docker run -it -v $HOME/notebooks:/notebooks -p 8088:8088 -p
 
 # NGAP2 tools depend on this alias
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
+
+alias tree='tree -C'
