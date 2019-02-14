@@ -82,7 +82,7 @@ bindkey "\e[1;3D" backward-word
 
 bindkey '^ ' autosuggest-execute
 
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 autoload -Uz promptinit
 promptinit
@@ -108,10 +108,8 @@ export NVM_DIR="$HOME/.nvm"
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/jmil46/Projects/CDS/crs-hydration-station/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/jmil46/Projects/CDS/crs-hydration-station/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/jmil46/Projects/CDS/crs-hydration-station/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/jmil46/Projects/CDS/crs-hydration-station/node_modules/tabtab/.completions/sls.zsh
+[[ -f /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
