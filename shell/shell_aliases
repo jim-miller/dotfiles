@@ -227,3 +227,5 @@ alias jupyterspark="docker run -it -v $HOME/notebooks:/notebooks -p 8088:8088 -p
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 
 alias tree='tree -C'
+
+alias jupyterscala='docker run -it -v /Users/jimmiller/notebooks:/home/jovyan/notebooks --rm -p 8888:8888 almondsh/almond:latest'
