@@ -186,3 +186,8 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+.metals/
+metals.sbt
+
+.vscode/
