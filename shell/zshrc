@@ -8,7 +8,6 @@ dirs_to_prepend=(
   "/usr/local/git/bin"
   "$HOME/dotfiles/bin"
   "$HOME/.local/bin"
-  "$HOME/.rvm/bin"
   "$HOME/Tools/gimme-aws-creds/bin"
   "$(brew --prefix ruby)/bin"
   "$(brew --prefix coreutils)/libexec/gnubin" # Add brew-installed GNU core utilities bin
@@ -82,8 +81,6 @@ bindkey "\e[1;3D" backward-word
 
 bindkey '^ ' autosuggest-execute
 
-# eval "$(rbenv init -)"
-
 autoload -Uz promptinit
 promptinit
 
@@ -114,5 +111,3 @@ export NVM_DIR="$HOME/.nvm"
 [[ -f /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
