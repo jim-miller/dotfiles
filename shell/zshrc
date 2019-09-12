@@ -17,7 +17,7 @@ dirs_to_prepend=(
 )
 
 # Explicitly configured $PATH
-# PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 for dir in ${(k)dirs_to_prepend[@]}
 do
@@ -65,13 +65,13 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws git brew brew-cask scala sbt python pip docker virtualenv zsh-autosuggestions docker nvm)
+plugins=(aws git brew scala sbt python pip docker virtualenv zsh-autosuggestions docker kubectl minikube helm)
 
 # User configuration
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
-fi
+# if [ -f `brew --prefix`/etc/bash_completion ]; then
+#   . `brew --prefix`/etc/bash_completion
+# fi
 
 ql() { (( $# > 0 )) && qlmanage -p $* &>/dev/null & } # Quicklook
 
@@ -80,6 +80,8 @@ bindkey "\e[1;3C" forward-word
 bindkey "\e[1;3D" backward-word
 
 bindkey '^ ' autosuggest-execute
+
+# eval "$(rbenv init -)"
 
 autoload -Uz promptinit
 promptinit
@@ -98,7 +100,6 @@ for file in $HOME/.{shell_exports,shell_aliases,shell_functions,shell_config}; d
 done;
 unset file;
 
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -109,5 +110,6 @@ export NVM_DIR="$HOME/.nvm"
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+[ -s "/Users/jimmiller/.jabba/jabba.sh" ] && source "/Users/jimmiller/.jabba/jabba.sh"
 
