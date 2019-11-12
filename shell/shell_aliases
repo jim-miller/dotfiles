@@ -12,7 +12,8 @@ alias grepsrc="grep -Rn -C 3 \
 alias ij='open -a /Applications/IntelliJ\ IDEA\ CE.app/Contents/MacOS/idea'
 alias st='open -a SourceTree'
 alias cleangitbranches='git branch --merged master | grep -vE "^(\*|\s*master\s*$)" | ansifilter | xargs -n 1 git branch -d; git remote prune origin'
-alias vi="/usr/local/bin/vim"
+# alias vi="/usr/local/bin/vim"
+alias vi="/usr/local/bin/nvim"
 alias dog="pygmentize -g"
 
 # Enable aliases to be sudo’ed
@@ -135,7 +136,7 @@ alias gpt="git push origin HEAD && git push --tags"
 alias wip="git commit -m'WIP' . && git push origin HEAD"
 alias grok="ngrok start rem.jsbin-dev.com static.rem.jsbin-dev.com learn.rem.jsbin-dev.com"
 alias gl='git log'
-alias glp5='git log -5 --pretty --oneline' # view your last 5 latest commits each on their own line
+alias glp='git log --pretty --oneline' # view your last 5 latest commits each on their own line
 alias glt='git log --all --graph --decorate --oneline --simplify-by-decoration' # pretty branch status
 alias glsw='git log -S' # search the commit history for the word puppy and display matching commits (glsw [word])
 alias gs='git status'
@@ -227,5 +228,6 @@ alias jupyterspark="docker run -it -v $HOME/notebooks:/notebooks -p 8088:8088 -p
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 
 alias tree='tree -C'
+alias gitree='tree --prune -I $(cat .gitignore ~/.gitignore | egrep -v "^#.*$|^[[:space:]]*$" | tr "\\n" "|" 2> /dev/null)'
 
 alias jupyterscala='docker run -it -v /Users/jimmiller/notebooks:/home/jovyan/notebooks --rm -p 8888:8888 almondsh/almond:latest'
