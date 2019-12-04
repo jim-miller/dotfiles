@@ -136,7 +136,7 @@ alias gpt="git push origin HEAD && git push --tags"
 alias wip="git commit -m'WIP' . && git push origin HEAD"
 alias grok="ngrok start rem.jsbin-dev.com static.rem.jsbin-dev.com learn.rem.jsbin-dev.com"
 alias gl='git log'
-alias glp='git log --pretty --oneline' # view your last 5 latest commits each on their own line
+alias glp='git log -10 --pretty --oneline' # view your last 10 latest commits each on their own line
 alias glt='git log --all --graph --decorate --oneline --simplify-by-decoration' # pretty branch status
 alias glsw='git log -S' # search the commit history for the word puppy and display matching commits (glsw [word])
 alias gs='git status'
@@ -158,7 +158,7 @@ alias gws='git diff --shortstat "@{0 day ago}"' # how many lines of code you hav
 alias gwts='git ls-files | xargs wc -l' # count number of lines of code in a git project
 alias ggmp='git checkout -' # jump back to to your last branch
 alias gst='git stash' # stash git changes and put them into your list
-alias gdtp='git stash pop' # bring back your changes, but it removes them from your stash
+alias gstp='git stash pop' # bring back your changes, but it removes them from your stash
 alias gchp='git cherry-pick' # cherry pick the committed code in your own branch (gchp [hash])
 alias gcln='git clean -xfd' # remove untracked files
 
