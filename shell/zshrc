@@ -8,8 +8,6 @@ dirs_to_prepend=(
   "/usr/local/git/bin"
   "$HOME/dotfiles/bin"
   "$HOME/.local/bin"
-  "$(python -m site --user-base)/bin"
-  "$(brew --prefix ruby)/bin"
   "$(brew --prefix coreutils)/libexec/gnubin" # Add brew-installed GNU core utilities bin
   "$(brew --prefix)/share/npm/bin" # Add npm-installed package bin
   "$(brew --prefix)/opt/python/libexec/bin"
@@ -35,7 +33,15 @@ export PATH
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir newline java_version vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -81,7 +87,7 @@ bindkey "\e[1;3D" backward-word
 
 bindkey '^ ' autosuggest-execute
 
-# eval "$(rbenv init -)"
+eval "$(rbenv init -)"
 
 autoload -Uz promptinit
 promptinit
@@ -111,5 +117,11 @@ export NVM_DIR="$HOME/.nvm"
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 
-[ -s "/Users/jimmiller/.jabba/jabba.sh" ] && source "/Users/jimmiller/.jabba/jabba.sh"
+[ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
