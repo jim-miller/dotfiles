@@ -231,3 +231,4 @@ alias tree='tree -C'
 alias gitree='tree --prune -I $(cat .gitignore ~/.gitignore | egrep -v "^#.*$|^[[:space:]]*$" | tr "\\n" "|" 2> /dev/null)'
 
 alias jupyterscala='docker run -it -v /Users/jimmiller/notebooks:/home/jovyan/notebooks --rm -p 8888:8888 almondsh/almond:latest'
+alias openports='lsof -iTCP -sTCP:LISTEN -Pn'
