@@ -6,3 +6,5 @@ export NVM_DIR="$HOME/.nvm"
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ -s "/Users/jimmiller/.jabba/jabba.sh" ] && source "/Users/jimmiller/.jabba/jabba.sh"
