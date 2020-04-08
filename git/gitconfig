@@ -182,10 +182,10 @@
         tool = opendiff
 
 [core]
-        editor = vim
+        editor = nvim
         abbrev = 12
         attributesfile = ~/.gitattributes
-        excludesfile = /Users/jimmiller/.gitignore
+	excludesfile = /Users/jimmiller/.gitignore
         autocrlf = input
         mergeoptions = --no-edit
         ignorecase = false
@@ -258,7 +258,7 @@
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [user]
 	email = jim.miller@lightbend.com

@@ -25,7 +25,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/vim-easy-align'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-entire'
 " Plug 'mpollmeier/vim-scalaConceal', { 'for': 'scala' }
@@ -40,6 +39,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 
+if has('nvim') || has('patch-8.0.902')
+  Plug 'mhinz/vim-signify'
+else
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
+
 call plug#end()
 
 let g:Powerline_stl_path_style = 'short'
@@ -47,6 +52,9 @@ let g:Powerline_stl_path_style = 'short'
 let g:CommandTFileScanner="git"
 let g:CommandTTraverseSCM="pwd"
 set wildignore=*.o,*.a,*.so,*.pyc,*.swp,.git/,*.class,*/target/*,.idea/
+
+" For vim-signify updates
+set updatetime=100
 
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
