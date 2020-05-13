@@ -5,7 +5,7 @@
         aa = add --all
 
         # Branch
-        br = branch
+	br = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
         branch-name = rev-parse --abbrev-ref HEAD
         branch-diff = diff master...HEAD
         branch-files = "!git diff master...HEAD --name-status | sed '/^D/d ; s/^.\\s\\+//'"
