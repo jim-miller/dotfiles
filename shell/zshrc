@@ -10,6 +10,7 @@ dirs_to_prepend=(
   "/usr/local/git/bin"
   "$HOME/dotfiles/bin"
   "$HOME/.local/bin"
+  "$HOME/context/tex/texmf-osx-64/bin"
   "$(brew --prefix coreutils)/libexec/gnubin" # Add brew-installed GNU core utilities bin
   "$(brew --prefix)/share/npm/bin" # Add npm-installed package bin
   "$(brew --prefix)/opt/python/libexec/bin"
