@@ -8,6 +8,7 @@ declare -a dirs_to_prepend
 dirs_to_prepend=(
   "/usr/local/sbin"
   "/usr/local/git/bin"
+  "/usr/local/opt/gnu-sed/libexec/gnubin"
   "$HOME/dotfiles/bin"
   "$HOME/.local/bin"
   "$HOME/context/tex/texmf-osx-64/bin"
@@ -16,7 +17,6 @@ dirs_to_prepend=(
   "$(brew --prefix)/opt/python/libexec/bin"
   "$(brew --prefix)/opt/cassandra@2.1/bin"
 )
-
 # Explicitly configured $PATH
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 

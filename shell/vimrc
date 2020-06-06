@@ -84,6 +84,7 @@ nnoremap <silent> <leader>t :FZF<CR>
 
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
+nnoremap <silent> <space>oi :<C-u>SortScalaImports<CR>
 
 " Start NerdTree if no files was selected
 autocmd StdinReadPre * let s:std_in=1
