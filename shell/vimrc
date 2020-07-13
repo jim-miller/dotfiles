@@ -45,6 +45,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'voldikss/vim-floaterm'
+Plug 'solarnz/thrift.vim'
+Plug 'pantsbuild/vim-pants'
 
 if has('nvim') || has('patch-8.0.902')
   Plug 'mhinz/vim-signify'
@@ -84,7 +86,7 @@ nnoremap <silent> <leader>t :FZF<CR>
 
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
-nnoremap <silent> <space>oi :<C-u>SortScalaImports<CR>
+nnoremap <silent> <space>si :<C-u>SortScalaImports<CR>
 
 " Start NerdTree if no files was selected
 autocmd StdinReadPre * let s:std_in=1
@@ -187,7 +189,7 @@ set hls
 syntax on
 
 set background=dark
-colorscheme sorcerer
+colorscheme sourcerer
 
 autocmd FileType make setlocal noexpandtab
 
