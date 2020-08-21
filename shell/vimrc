@@ -23,8 +23,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'adlawson/vim-sorcerer'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/vim-easy-align'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'tpope/vim-commentary'
@@ -47,6 +45,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'voldikss/vim-floaterm'
 Plug 'solarnz/thrift.vim'
 Plug 'pantsbuild/vim-pants'
+Plug 'gu-fan/riv.vim'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 
 if has('nvim') || has('patch-8.0.902')
   Plug 'mhinz/vim-signify'
@@ -88,33 +88,10 @@ nnoremap <silent> <leader>t :FZF<CR>
 au BufRead,BufNewFile *.sbt set filetype=scala
 nnoremap <silent> <space>si :<C-u>SortScalaImports<CR>
 
-" Start NerdTree if no files was selected
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" Close NerdTree if it's the only window left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 " Comments highlighting
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
-silent! nmap <C-p> :NERDTreeToggle<CR>
-silent! map <F3> :NERDTreeFind<CR>
-
-let g:NERDTreeMapActivateNode="<F3>"
-let g:NERDTreeMapPreview="<F4>"
-
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
+silent! nmap <C-p> <cmd>CHADopen<CR>
 
 " Scala REPL integration
 " map <Leader>s :SlimuxREPLSendLine<CR>

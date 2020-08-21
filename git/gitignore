@@ -188,7 +188,7 @@ typings/
 .dynamodb/
 
 .metals/
-metals.sbt
+project/metals.sbt
 .bloop/
 
 .vscode/

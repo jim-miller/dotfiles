@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export TERM="xterm-256color"
 
 # Path to your oh-my-zsh configuration.
@@ -11,11 +18,7 @@ dirs_to_prepend=(
   "/usr/local/opt/gnu-sed/libexec/gnubin"
   "$HOME/dotfiles/bin"
   "$HOME/.local/bin"
-  "$HOME/context/tex/texmf-osx-64/bin"
   "$(brew --prefix coreutils)/libexec/gnubin" # Add brew-installed GNU core utilities bin
-  "$(brew --prefix)/share/npm/bin" # Add npm-installed package bin
-  "$(brew --prefix)/opt/python/libexec/bin"
-  "$(brew --prefix)/opt/cassandra@2.1/bin"
 )
 # Explicitly configured $PATH
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -36,15 +39,7 @@ export PATH
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir newline java_version vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=8
-POWERLEVEL9K_SHORTEN_DELIMITER="…"
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -96,6 +91,14 @@ autoload -Uz promptinit
 promptinit
 
 fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=($HOME/.zsh/completion $fpath)
+
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -137,3 +140,28 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+###-begin-web-script-content-###
+###-begin-run-completions-###
+#
+# yargs command completion script
+#
+# Installation: /Users/jimm/workspace/web/scripts/run null >> ~/.zshrc
+#    or /Users/jimm/workspace/web/scripts/run null >> ~/.zsh_profile on OSX.
+#
+_run_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" /Users/jimm/workspace/web/scripts/run --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _run_yargs_completions run
+###-end-run-completions-###
+
+
+###-end-web-script-content-###

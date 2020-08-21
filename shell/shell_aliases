@@ -11,6 +11,9 @@ alias grepsrc="grep -Rn -C 3 \
 # alias git=hub # using this alias causes oh-my-zsh git plugin to break
 alias ij='open -a /Applications/IntelliJ\ IDEA\ CE.app/Contents/MacOS/idea'
 alias st='open -a SourceTree'
+alias cds='cd $HOME/workspace/source'
+alias cdw='cd $HOME/workspace/web'
+alias cdk='cd $HOME/kata'
 alias cleangitbranches='git branch --merged master | grep -vE "^(\*|\s*master\s*$)" | ansifilter | xargs -n 1 git branch -d; git remote prune origin'
 # alias vi="/usr/local/bin/vim"
 alias vi="/usr/local/bin/nvim"
@@ -232,3 +235,6 @@ alias gitree='tree --prune -I $(cat .gitignore ~/.gitignore | egrep -v "^#.*$|^[
 
 alias jupyterscala='docker run -it -v /Users/jimmiller/notebooks:/home/jovyan/notebooks --rm -p 8888:8888 almondsh/almond:latest'
 alias openports='lsof -iTCP -sTCP:LISTEN -Pn'
+
+# print line numbers. E.g. from the output of pygmentize.
+alias ln='cat -n | sed "s/^[ \t]*//"'
