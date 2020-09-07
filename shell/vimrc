@@ -37,7 +37,6 @@ Plug 'tpope/vim-surround'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
-Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 Plug 'janko/vim-test'
 Plug 'tpope/vim-dispatch'
 Plug 'vim-airline/vim-airline'
@@ -47,6 +46,7 @@ Plug 'solarnz/thrift.vim'
 Plug 'pantsbuild/vim-pants'
 Plug 'gu-fan/riv.vim'
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
+Plug 'honza/vim-snippets'
 
 if has('nvim') || has('patch-8.0.902')
   Plug 'mhinz/vim-signify'
@@ -204,7 +204,7 @@ endif
 
 let test#neovim#term_position = "topright"
 let test#neovim#term_position = "vert"
-let test#neovim#term_position = "vert botright 100"
+let test#neovim#term_position = "vert botright 70"
 
 " end vim-test settings
 
