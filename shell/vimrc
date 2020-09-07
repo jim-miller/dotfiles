@@ -47,6 +47,7 @@ Plug 'pantsbuild/vim-pants'
 Plug 'gu-fan/riv.vim'
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 Plug 'honza/vim-snippets'
+Plug 'xero/sourcerer.vim'
 
 if has('nvim') || has('patch-8.0.902')
   Plug 'mhinz/vim-signify'
