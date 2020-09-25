@@ -60,7 +60,10 @@ let g:CommandTFileScanner="git"
 let g:CommandTTraverseSCM="pwd"
 set wildignore=*.o,*.a,*.so,*.pyc,*.swp,.git/,*.class,*/target/*,.idea/
 
-" For vim-signify updates
+" Enable incrementing letters in addition to numbers
+set nrformats+=alpha
+
+"" For vim-signify updates
 set updatetime=100
 
 xmap ga <Plug>(EasyAlign)
@@ -76,10 +79,6 @@ let g:goyo_width = 120
 
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
-
-hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 " FZF bindings
 nnoremap <silent> <leader>t :FZF<CR>
@@ -204,7 +203,7 @@ endif
 
 let test#neovim#term_position = "topright"
 let test#neovim#term_position = "vert"
-let test#neovim#term_position = "vert botright 100"
+let test#neovim#term_position = "vert botright 120"
 
 " end vim-test settings
 
@@ -221,6 +220,10 @@ nnoremap <F5> yyp<c-v>$r-
 
 " Underline the current line with dashes in insert mode
 inoremap <F5> <Esc>yyp<c-v>$r-A
+
+hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+hi CursorColumn cterm=NONE ctermbg=DarkGrey ctermfg=white guibg=darkred guifg=white
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 " Configuration for coc.nvim
 
