@@ -179,3 +179,9 @@ ec2tags() {
 decodejwt () {
   tr '.' ' ' | awk '{print $2}' | base64 -d
 }
+
+bt() {
+  local target
+  target=$(bloop projects | grep test | fzf +m) &&
+  bloop test "$target"
+}
