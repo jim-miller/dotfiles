@@ -152,9 +152,6 @@
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # So much color
-[color]
-        ui = always
-
 [color "branch"]
         current = green bold
         local = green
@@ -256,14 +253,16 @@
         prune = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [user]
-	email = jim.miller@lightbend.com
+	email = jim.miller@axoni.com
 	name = Jim Miller
 [branch "master"]
 	mergeoptions = --ff-only
 [pull]
 	rebase = false
+[url "git@git.axoni.com:"]
+	instanceOf = https://git.axoni.com

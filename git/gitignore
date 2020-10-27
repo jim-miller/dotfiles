@@ -192,3 +192,5 @@ project/metals.sbt
 .bloop/
 
 .vscode/
+
+.data1/
