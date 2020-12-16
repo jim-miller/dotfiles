@@ -1,5 +1,3 @@
-call plug#begin('~/.vim/plugged')
-
 " Function key fixes for OS X
 if has('mac') && ($TERM == 'xterm-256color' || $TERM == 'screen-256color')
   map <Esc>OP <F1>
@@ -16,38 +14,36 @@ if has('mac') && ($TERM == 'xterm-256color' || $TERM == 'screen-256color')
   map <Esc>[24~ <F12>
 endif
 
-Plug 'rizzatti/dash.vim'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-fugitive'
-Plug 'adlawson/vim-sorcerer'
+call plug#begin('~/.vim/plugged')
+
+Plug 'SirVer/ultisnips'
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+Plug 'honza/vim-snippets'
+Plug 'janko/vim-test'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-Plug 'tpope/vim-commentary'
-Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-entire'
-" Plug 'mpollmeier/vim-scalaConceal', { 'for': 'scala' }
-Plug 'tmux-plugins/vim-tmux'
-" Plug 'epeli/slimux'
-" Plug 'vim-scripts/TaskList.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-" Plug 'wincent/Command-T'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+Plug 'morhetz/gruvbox'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'janko/vim-test'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'voldikss/vim-floaterm'
-Plug 'solarnz/thrift.vim'
-Plug 'pantsbuild/vim-pants'
-Plug 'gu-fan/riv.vim'
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
-Plug 'honza/vim-snippets'
-Plug 'xero/sourcerer.vim'
+
+if has('mac')
+  Plug 'rizzatti/dash.vim'
+endif
 
 if has('nvim') || has('patch-8.0.902')
   Plug 'mhinz/vim-signify'
@@ -67,7 +63,9 @@ set updatetime=100
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-nmap <silent> <leader>d <Plug>DashSearch
+if has('mac')
+  nmap <silent> <leader>d <Plug>DashSearch
+endif
 
 nmap <Leader>l <Plug>(Limelight)
 xmap <Leader>l <Plug>(Limelight)
@@ -83,7 +81,11 @@ hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=whi
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 " FZF bindings
-nnoremap <silent> <leader>t :FZF<CR>
+nnoremap <silent> <leader>t :FZF --layout=reverse<CR>
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
@@ -93,15 +95,6 @@ nnoremap <silent> <space>si :<C-u>SortScalaImports<CR>
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
 silent! nmap <C-p> <cmd>CHADopen<CR>
-
-" Scala REPL integration
-" map <Leader>s :SlimuxREPLSendLine<CR>
-" vmap <Leader>s :SlimuxREPLSendSelection<CR>
-" map <Leader>a :SlimuxShellLast<CR>
-" map <Leader>k :SlimuxSendKeysLast<CR>
-
-" TaksList TODO options
-" let g:tlWindowPosition = 1
 
 set showcmd		" display incomplete commands
 
@@ -118,13 +111,6 @@ endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!
@@ -143,11 +129,8 @@ if has("autocmd")
     \ endif
 
   augroup END
-
 else
-
   set autoindent		" always set autoindenting on
-
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
@@ -160,14 +143,12 @@ endif
 
 set ignorecase
 set expandtab
-set tabstop=2
-set shiftwidth=2
 set number
 set hls
 syntax on
 
 set background=dark
-colorscheme sourcerer
+colorscheme gruvbox
 
 autocmd FileType make setlocal noexpandtab
 
@@ -205,7 +186,7 @@ endif
 
 let test#neovim#term_position = "topright"
 let test#neovim#term_position = "vert"
-let test#neovim#term_position = "vert botright 70"
+let test#neovim#term_position = "vert botright 90"
 
 " end vim-test settings
 
@@ -219,140 +200,6 @@ let g:bufferline_echo = 0
 
 " Underline the current line with dashes in normal mode
 nnoremap <F5> yyp<c-v>$r-
-
 " Underline the current line with dashes in insert mode
 inoremap <F5> <Esc>yyp<c-v>$r-A
 
-" Configuration for coc.nvim
-
-" If hidden is not set, TextEdit might fail.
-set hidden
-
-" Some servers have issues with backup files
-set nobackup
-set nowritebackup
-
-" You will have a bad experience with diagnostic messages with the default 4000.
-set updatetime=300
-
-" Don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" Always show signcolumns
-set signcolumn=yes
-
-" Help Vim recognize *.sbt and *.sc as Scala files
-au BufRead,BufNewFile *.sbt,*.sc set filetype=scala
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-" Used in the tab autocompletion for coc
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Used to expand decorations in worksheets
-nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
-
-" Use K to either doHover or show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType scala setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of current line
-xmap <leader>a  <Plug>(coc-codeaction-line)
-nmap <leader>a  <Plug>(coc-codeaction-line)
-
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Trigger for code actions
-" Make sure `"codeLens.enable": true` is set in your coc config
-nnoremap <leader>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
-
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-" Notify coc.nvim that <enter> has been pressed.
-" Currently used for the formatOnType feature.
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Toggle panel with Tree Views
-nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
-" Toggle Tree View 'metalsPackages'
-nnoremap <silent> <space>tp :<C-u>CocCommand metals.tvp metalsPackages<CR>
-" Toggle Tree View 'metalsCompile'
-nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
-" Toggle Tree View 'metalsBuild'
-nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
-" Reveal current current class (trait or object) in Tree View 'metalsPackages'
-nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
