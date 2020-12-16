@@ -14,7 +14,7 @@ alias st='open -a SourceTree'
 alias cds='cd $HOME/workspace/source'
 alias cdw='cd $HOME/workspace/web'
 alias cdk='cd $HOME/kata'
-alias cleangitbranches='git branch --merged master | grep -vE "^(\*|\s*master\s*$)" | ansifilter | xargs -n 1 git branch -d; git remote prune origin'
+alias cleangitbranches='git branch --merged dev | grep -vE "^(\*|\s*dev\s*$)" | ansifilter | xargs -n 1 git branch -d; git remote prune origin'
 # alias vi="/usr/local/bin/vim"
 alias vi="/usr/local/bin/nvim"
 alias dog="pygmentize -g"
@@ -237,4 +237,4 @@ alias jupyterscala='docker run -it -v /Users/jimmiller/notebooks:/home/jovyan/no
 alias openports='lsof -iTCP -sTCP:LISTEN -Pn'
 
 # print line numbers. E.g. from the output of pygmentize.
-alias ln='cat -n | sed "s/^[ \t]*//"'
+alias catline='cat -n | sed "s/^[ \t]*//"'

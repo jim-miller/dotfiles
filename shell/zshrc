@@ -16,6 +16,9 @@ dirs_to_prepend=(
   "/usr/local/sbin"
   "/usr/local/git/bin"
   "/usr/local/opt/gnu-sed/libexec/gnubin"
+  "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+  "$HOME/go-workspace/bin"
+  "$HOME/go-workspace/bin"
   "$HOME/dotfiles/bin"
   "$HOME/.local/bin"
   "$(brew --prefix coreutils)/libexec/gnubin" # Add brew-installed GNU core utilities bin
@@ -85,8 +88,6 @@ bindkey "\e[1;3D" backward-word
 
 bindkey '^ ' autosuggest-execute
 
-eval "$(rbenv init -)"
-
 autoload -Uz promptinit
 promptinit
 
@@ -124,6 +125,10 @@ export NVM_DIR="$HOME/.nvm"
 [[ -f /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 
 [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
+
+export PATH="$HOME/.jenv/bin:$PATH"
+
+eval "$(jenv init -)"
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
