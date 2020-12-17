@@ -72,7 +72,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws git brew scala sbt python pip docker virtualenv zsh-autosuggestions docker kubectl minikube helm oc)
+plugins=(aws git brew scala sbt python pip docker zsh-autosuggestions docker kubectl minikube helm oc zsh-nvm)
 
 # User configuration
 
@@ -113,23 +113,6 @@ for file in $HOME/.{shell_exports,shell_aliases,shell_functions,shell_config}; d
 done;
 unset file;
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
-
-# [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
-
-# export PATH="$HOME/.jenv/bin:$PATH"
-
-# eval "$(jenv init -)"
-
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
@@ -148,29 +131,7 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-###-begin-web-script-content-###
-###-begin-run-completions-###
-#
-# yargs command completion script
-#
-# Installation: /Users/jimm/workspace/web/scripts/run null >> ~/.zshrc
-#    or /Users/jimm/workspace/web/scripts/run null >> ~/.zsh_profile on OSX.
-#
-_run_yargs_completions()
-{
-  local reply
-  local si=$IFS
-  IFS=$'
-' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" /Users/jimm/workspace/web/scripts/run --get-yargs-completions "${words[@]}"))
-  IFS=$si
-  _describe 'values' reply
-}
-compdef _run_yargs_completions run
-###-end-run-completions-###
-
-
-###-end-web-script-content-###
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/testing/.sdkman"
-[[ -s "/home/testing/.sdkman/bin/sdkman-init.sh" ]] && source "/home/testing/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/home/jim/.sdkman"
+[[ -s "/home/jim/.sdkman/bin/sdkman-init.sh" ]] && source "/home/jim/.sdkman/bin/sdkman-init.sh"
