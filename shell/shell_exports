@@ -61,7 +61,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # command -v gdircolors >/dev/null 2>&1 || alias gdircolors="dircolors"
 # eval "$(gdircolors -b ~/.dircolors)"
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+# export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 
 export GOPATH=$HOME/go-workspace
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/local/lib/pkgconfig

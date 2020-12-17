@@ -8,3 +8,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 [ -s "/Users/jimmiller/.jabba/jabba.sh" ] && source "/Users/jimmiller/.jabba/jabba.sh"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/testing/.sdkman"
+[[ -s "/home/testing/.sdkman/bin/sdkman-init.sh" ]] && source "/home/testing/.sdkman/bin/sdkman-init.sh"

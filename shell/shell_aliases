@@ -3,8 +3,8 @@
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-alias grep="ggrep"
-alias free="top -l 1 | head -n 10 | grep PhysMem"
+# alias grep="ggrep"
+# alias free="top -l 1 | head -n 10 | grep PhysMem"
 alias grepsrc="grep -Rn -C 3 \
   --include={\*.java,\*.scala,\*.py,\*.sbt,\*.gradle,\*.js} \
   --exclude-dir={test,.git,.svn,CVS,node_modules,static,venv}"
@@ -16,7 +16,7 @@ alias cdw='cd $HOME/workspace/web'
 alias cdk='cd $HOME/kata'
 alias cleangitbranches='git branch --merged dev | grep -vE "^(\*|\s*dev\s*$)" | ansifilter | xargs -n 1 git branch -d; git remote prune origin'
 # alias vi="/usr/local/bin/vim"
-alias vi="/usr/local/bin/nvim"
+alias vi=`which nvim`
 alias dog="pygmentize -g"
 
 # Enable aliases to be sudo’ed
@@ -87,19 +87,19 @@ export CLICOLOR_FORCE=1
 # alias l="ls -lF ${colorflag}"
 
 # List all files using colorls https://github.com/athityakumar/colorls
-alias ll="colorls -l --sd"
+# alias ll="colorls -l --sd"
 
 # ls options: A = include hidden (but not . or ..), F = put `/` after folders, h = byte unit suffixes
 # alias ls='ls -AFh ${colorflag} --group-directories-first'
-alias ls='colorls -A --sd'
+# alias ls='colorls -A --sd'
 
 # List all files colorized in long format, including dot files
 # alias la="ls -la ${colorflag}"
-alias la="colorls -la"
+# alias la="colorls -la"
 
 # List only directories
 # alias lsd='gls -l | grep "^d"'
-alias lsd='colorls -ld'
+# alias lsd='colorls -ld'
 
 # `cat` with beautiful colors. requires Pygments installed.
 # sudo easy_install -U Pygments

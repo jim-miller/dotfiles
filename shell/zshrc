@@ -21,7 +21,7 @@ dirs_to_prepend=(
   "$HOME/go-workspace/bin"
   "$HOME/dotfiles/bin"
   "$HOME/.local/bin"
-  "$(brew --prefix coreutils)/libexec/gnubin" # Add brew-installed GNU core utilities bin
+  # "$(brew --prefix coreutils)/libexec/gnubin" # Add brew-installed GNU core utilities bin
 )
 # Explicitly configured $PATH
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -124,11 +124,11 @@ export NVM_DIR="$HOME/.nvm"
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jmil46/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 
-[ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
+# [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 
-export PATH="$HOME/.jenv/bin:$PATH"
+# export PATH="$HOME/.jenv/bin:$PATH"
 
-eval "$(jenv init -)"
+# eval "$(jenv init -)"
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -170,3 +170,7 @@ compdef _run_yargs_completions run
 
 
 ###-end-web-script-content-###
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/testing/.sdkman"
+[[ -s "/home/testing/.sdkman/bin/sdkman-init.sh" ]] && source "/home/testing/.sdkman/bin/sdkman-init.sh"
