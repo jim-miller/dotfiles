@@ -172,7 +172,7 @@ set clipboard=unnamed
 " make test commands execute using dispatch.vim
 " let test#strategy = "dispatch"
 let test#strategy = "neovim"
-let test#scala#runner = 'blooptest'
+let test#scala#runner = 'sbttest'
 
 nmap <silent> t<C-n> :TestNearest<CR>
 nmap <silent> t<C-f> :TestFile<CR>
