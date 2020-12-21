@@ -194,3 +194,4 @@ project/metals.sbt
 .vscode/
 
 .data1/
+.bsp/

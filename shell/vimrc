@@ -83,9 +83,9 @@ nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 " FZF bindings
 nnoremap <silent> <leader>t :FZF --layout=reverse<CR>
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
