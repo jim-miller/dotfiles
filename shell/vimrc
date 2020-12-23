@@ -53,6 +53,12 @@ endif
 
 call plug#end()
 
+if has('python3')
+  set pyx=3
+elseif has('python')
+  set pyx=2
+endif
+
 let g:CommandTFileScanner="git"
 let g:CommandTTraverseSCM="pwd"
 set wildignore=*.o,*.a,*.so,*.pyc,*.swp,.git/,*.class,*/target/*,.idea/
