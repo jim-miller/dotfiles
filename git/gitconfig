@@ -261,7 +261,7 @@
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [user]
-	email = jim.miller@lightbend.com
+	email = miller.jim@gmail.com
 	name = Jim Miller
 [branch "master"]
 	mergeoptions = --ff-only
