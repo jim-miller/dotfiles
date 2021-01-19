@@ -3,7 +3,6 @@
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-alias grep="ggrep"
 alias free="top -l 1 | head -n 10 | grep PhysMem"
 alias grepsrc="grep -Rn -C 3 \
   --include={\*.java,\*.scala,\*.py,\*.sbt,\*.gradle,\*.js} \
@@ -235,6 +234,3 @@ alias gitree='tree --prune -I $(cat .gitignore ~/.gitignore | egrep -v "^#.*$|^[
 
 alias jupyterscala='docker run -it -v /Users/jimmiller/notebooks:/home/jovyan/notebooks --rm -p 8888:8888 almondsh/almond:latest'
 alias openports='lsof -iTCP -sTCP:LISTEN -Pn'
-
-# print line numbers. E.g. from the output of pygmentize.
-alias ln='cat -n | sed "s/^[ \t]*//"'

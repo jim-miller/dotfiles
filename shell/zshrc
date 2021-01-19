@@ -85,8 +85,6 @@ bindkey "\e[1;3D" backward-word
 
 bindkey '^ ' autosuggest-execute
 
-eval "$(rbenv init -)"
-
 autoload -Uz promptinit
 promptinit
 
