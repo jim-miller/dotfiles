@@ -152,9 +152,6 @@
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # So much color
-[color]
-        ui = always
-
 [color "branch"]
         current = green bold
         local = green
@@ -256,7 +253,7 @@
         prune = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -265,3 +262,5 @@
 	name = Jim Miller
 [branch "master"]
 	mergeoptions = --ff-only
+[pull]
+	rebase = false

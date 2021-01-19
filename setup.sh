@@ -160,14 +160,6 @@ echo "done"
 # Actual symlink stuff
 #
 
-
-# Atom editor settings
-echo -n "Copying Atom settings.."
-mv -f ~/.atom ~/dotfiles_old/
-ln -s $HOME/dotfiles/atom ~/.atom
-echo "done"
-
-
 declare -a FILES_TO_SYMLINK=(
 
   'shell/shell_aliases'
@@ -267,6 +259,38 @@ main() {
   crontab mycron
   rm mycron
 
+  # Vim Plug dependency
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  mkdir -p $HOME/.config/nvim
+  mkdir -p $HOME/.config/coc
+  ln -fs $HOME/dotfiles/shell/nvim/init.vim $HOME/.config/nvim/init.vim
+  ln -fs $HOME/dotfiles/shell/nvim/metals.vim $HOME/.config/coc/metals.vim
+}
+
+install_curl () {
+  # Test to see if curl is installed.  If it is:
+  if [ -f /bin/curl -o -f /usr/bin/curl ]; then
+    exit
+  else
+    # If curl isn't installed, get the platform of the current machine
+    platform=$(uname);
+    # If the platform is Linux, try an apt-get to install zsh and then recurse
+    if [[ $platform == 'Linux' ]]; then
+      if [[ -f /etc/redhat-release ]]; then
+        sudo yum install curl
+      fi
+      if [[ -f /etc/debian_version ]]; then
+        sudo apt -y install curl
+      fi
+    # If the platform is OS X, tell the user to install zsh :)
+    elif [[ $platform == 'Darwin' ]]; then
+      echo "We'll install zsh, then re-run this script!"
+      brew install curl
+      exit
+    fi
+  fi
 }
 
 install_zsh () {
@@ -280,6 +304,8 @@ install_zsh () {
     if [[ ! $(echo $SHELL) == $(which zsh) ]]; then
       chsh -s $(which zsh)
     fi
+    # Powerlevel10k setup
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
   else
     # If zsh isn't installed, get the platform of the current machine
     platform=$(uname);
@@ -290,7 +316,7 @@ install_zsh () {
         install_zsh
       fi
       if [[ -f /etc/debian_version ]]; then
-        sudo apt-get install zsh
+        sudo apt -y install zsh
         install_zsh
       fi
     # If the platform is OS X, tell the user to install zsh :)
@@ -303,48 +329,51 @@ install_zsh () {
 }
 
 # Package managers & packages
-
-# . "$DOTFILES_DIR/install/brew.sh"
-# . "$DOTFILES_DIR/install/npm.sh"
-
-# if [ "$(uname)" == "Darwin" ]; then
-    # . "$DOTFILES_DIR/install/brew-cask.sh"
-# fi
-
-main
-# install_zsh
-
-###############################################################################
-# Atom                                                                        #
-###############################################################################
-
-# Copy over Atom configs
-#cp -r atom/packages.list $HOME/.atom
-
-# Install community packages
-#apm list --installed --bare - get a list of installed packages
-#apm install --packages-file $HOME/.atom/packages.list
-
-###############################################################################
-# Zsh                                                                         #
-###############################################################################
-
-# Install Zsh settings
-ln -s ~/dotfiles/zsh/themes/nick.zsh-theme $HOME/.oh-my-zsh/themes
+install_packages () {
+  platform=$(uname);
+  # If the platform is Linux, try apt-get
+  if [[ $platform == 'Linux' ]]; then
+    if [[ -f /etc/redhat-release ]]; then
+      . "$DOTFILES_DIR/install/yum.sh"
+    fi
+    if [[ -f /etc/debian_version ]]; then
+      . "$DOTFILES_DIR/install/apt.sh"
+    fi
+  # If the platform is OS X, tell the user to install zsh :)
+  elif [[ $platform == 'Darwin' ]]; then
+    . "$DOTFILES_DIR/install/brew.sh"
+  fi
+}
 
 
 ###############################################################################
 # Terminal & iTerm 2                                                          #
 ###############################################################################
+install_mac_tools () {
+  if [[ $(uname) == 'Darwin' ]]; then
+    # Only use UTF-8 in Terminal.app
+    defaults write com.apple.terminal StringEncodings -array 4
 
-# Only use UTF-8 in Terminal.app
-defaults write com.apple.terminal StringEncodings -array 4
+    # Install the Solarized Dark theme for iTerm
+    open "${HOME}/dotfiles/iterm/themes/Solarized Dark.itermcolors"
 
-# Install the Solarized Dark theme for iTerm
-open "${HOME}/dotfiles/iterm/themes/Solarized Dark.itermcolors"
+    # Don’t display the annoying prompt when quitting iTerm
+    defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+  fi
+}
 
-# Don’t display the annoying prompt when quitting iTerm
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+setup_jvm () {
+  curl -s "https://get.sdkman.io" | bash
+  sdk install java
+  sdk install sbt
+}
+
+main
+install_curl
+install_zsh
+install_packages
+install_mac_tools
+setup_java
 
 # Reload zsh settings
 source ~/.zshrc
