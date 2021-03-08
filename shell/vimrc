@@ -16,9 +16,9 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-Plug 'honza/vim-snippets'
 Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -27,11 +27,12 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'morhetz/gruvbox'
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
@@ -94,6 +95,7 @@ nnoremap <silent> <leader>t :FZF --layout=reverse<CR>
 
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
+au BufRead,BufNewFile *.sc set filetype=scala
 nnoremap <silent> <space>si :<C-u>SortScalaImports<CR>
 
 " Comments highlighting
@@ -150,6 +152,10 @@ set ignorecase
 set expandtab
 set number
 set hls
+set tabstop=2
+set softtabstop=2
+" when indenting with '>', use 2 spaces width
+set shiftwidth=2
 syntax on
 
 set background=dark
