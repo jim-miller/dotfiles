@@ -182,7 +182,7 @@
         editor = nvim
         abbrev = 12
         attributesfile = ~/.gitattributes
-	excludesfile = /Users/jimmiller/.gitignore
+	excludesfile = /Users/jmiller2/.gitignore
         autocrlf = input
         mergeoptions = --no-edit
         ignorecase = false
@@ -253,16 +253,16 @@
         prune = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+	path = 
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [user]
-	email = jim.miller@axoni.com
+	email = james.miller@disneystreaming.com
 	name = Jim Miller
 [branch "master"]
 	mergeoptions = --ff-only
 [pull]
 	rebase = false
-[url "git@git.axoni.com:"]
-	instanceOf = https://git.axoni.com
+[url "git@github.bamtech.co:"]
+	insteadOf = https://github.bamtech.co/

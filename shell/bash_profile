@@ -113,3 +113,8 @@ alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 [ -s "/Users/jimmiller/.jabba/jabba.sh" ] && source "/Users/jimmiller/.jabba/jabba.sh"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/jmiller2/.sdkman"
+[[ -s "/Users/jmiller2/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jmiller2/.sdkman/bin/sdkman-init.sh"
+. "$HOME/.cargo/env"

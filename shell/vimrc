@@ -16,10 +16,12 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'SirVer/ultisnips'
+" Plug 'fatih/vim-go'
+Plug 'GEverding/vim-hocon'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'honza/vim-snippets'
 Plug 'janko/vim-test'
+Plug 'jesseleite/vim-agriculture'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -29,6 +31,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'morhetz/gruvbox'
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'puremourning/vimspector'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -73,9 +76,6 @@ if has('mac')
   nmap <silent> <leader>d <Plug>DashSearch
 endif
 
-nmap <Leader>l <Plug>(Limelight)
-xmap <Leader>l <Plug>(Limelight)
-
 let g:limelight_conceal_ctermfg = 240
 let g:goyo_width = 120
 
@@ -84,14 +84,13 @@ autocmd! User GoyoLeave Limelight!
 
 hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+nnoremap <Leader>c :set cursorline!<CR>
+nnoremap <Leader>C :set cursorcolumn!<CR>
 
 " FZF bindings
 nnoremap <silent> <leader>t :FZF --layout=reverse<CR>
-
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>l :Lines<CR>
 
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
@@ -151,6 +150,8 @@ set ignorecase
 set expandtab
 set number
 set hls
+set tabstop=4
+set shiftwidth=4
 syntax on
 
 set background=dark
@@ -204,8 +205,32 @@ let g:airline_powerline_fonts = 1
 let g:bufferline_echo = 0
 " End Airline settings
 
-" Underline the current line with dashes in normal mode
-nnoremap <F5> yyp<c-v>$r-
-" Underline the current line with dashes in insert mode
-inoremap <F5> <Esc>yyp<c-v>$r-A
+" Vimspector mappings
+" Key        Mapping                                     Function
+" ===========================================================================================================
+" F5         <Plug>VimspectorContinue                    When debugging, continue. Otherwise start debugging.
+" F3         <Plug>VimspectorStop                        Stop debugging.
+" F4         <Plug>VimspectorRestart                     Restart debugging with the same configuration.
+" F6         <Plug>VimspectorPause                       Pause debuggee.
+" F9         <Plug>VimspectorToggleBreakpoint            Toggle line breakpoint on the current line.
+" <leader>F9 <Plug>VimspectorToggleConditionalBreakpoint Toggle conditional line breakpoint on the current line.
+" F8         <Plug>VimspectorAddFunctionBreakpoint       Add a function breakpoint for the expression under cursor
+" <leader>F8 <Plug>VimspectorRunToCursor                 Run to Cursor
+" F10        <Plug>VimspectorStepOver                    Step Over
+" F11        <Plug>VimspectorStepInto                    Step Into
+" F12        <Plug>VimspectorStepOut                     Step out of current function scope
+let g:vimspector_sidebar_width = 70
+let g:vimspector_bottombar_height = 15
+let g:vimspector_enable_mappings = 'HUMAN'
 
+nmap <leader>64 "=system('base64 --decode', @")<C-M>p
+imap <leader>64 <C-R>=system('base64 --decode', @")<C-M>
+
+" Underline the current line with dashes in normal mode
+nnoremap <leader>- yyp<c-v>$r-
+nnoremap <leader>= yyp<c-v>$r=
+
+nmap <Leader>/ <Plug>RgRawSearch
+vmap <Leader>/ <Plug>RgRawVisualSelection
+nmap <Leader>* <Plug>RgRawWordUnderCursor
+au BufNewFile,BufRead Jenkinsfile setf groovy

@@ -189,9 +189,13 @@ typings/
 
 .metals/
 project/metals.sbt
+project/project/**
 .bloop/
 
 .vscode/
 
 .data1/
 .bsp/
+
+# Probably want to remove this one after we start adopting scalafix within projects
+.scalafix.conf

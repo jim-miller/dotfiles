@@ -21,6 +21,8 @@ dirs_to_prepend=(
   "$HOME/go-workspace/bin"
   "$HOME/dotfiles/bin"
   "$HOME/.local/bin"
+  "/usr/local/opt/icu4c/bin"
+  "/usr/local/opt/icu4c/sbin"
   # "$(brew --prefix coreutils)/libexec/gnubin" # Add brew-installed GNU core utilities bin
 )
 # Explicitly configured $PATH
@@ -72,7 +74,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws git brew scala sbt python pip docker zsh-autosuggestions docker kubectl minikube helm oc)
+plugins=(aws git brew scala sbt python pip docker zsh-autosuggestions docker kubectl minikube helm oc golang)
 
 # User configuration
 
@@ -133,5 +135,5 @@ fi
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/jim/.sdkman"
-[[ -s "/home/jim/.sdkman/bin/sdkman-init.sh" ]] && source "/home/jim/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/Users/jmiller2/.sdkman"
+[[ -s "/Users/jmiller2/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jmiller2/.sdkman/bin/sdkman-init.sh"
